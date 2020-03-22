@@ -29,6 +29,7 @@ jobs:
       - run: brew update
       - run: brew install openssl@1.1
       - run: python -m pip install tox coverage
+
       - run: git clone https://github.com/google/wycheproof
 
       - run: |
@@ -39,6 +40,8 @@ jobs:
         env:
           TOXENV: ${{ matrix.PYTHON.TOXENV }}
 
+      - run: which coverage
+      - run: coverage --help
       - uses: codecov/codecov-action@v1
         with:
           name: "Python ${{ matrix.PYTHON.VERSION }} on macOS"
